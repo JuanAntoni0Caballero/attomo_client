@@ -1,11 +1,17 @@
 'use client'
-
+import { useContext } from 'react';
+import { AuthContext } from '@/app/contexts/auth.context';
 import { useState, useEffect } from 'react'
 import { Card, ListGroup, Button } from 'react-bootstrap'
 import Link from 'next/link'
 import './games.css'
 
 export default function GamesPage() {
+
+
+    const { userData } = useContext(AuthContext)
+
+    const isAdmin = userData.role === 'ADMIN'
 
     const [games, setGames] = useState([])
 
@@ -67,11 +73,11 @@ export default function GamesPage() {
                     < div className='container-gamesCardButton'>
                         <Button variant="dark" size="sm" onClick={() => likeGame(game._id)}>Me gusta</Button>
 
-                        <Link href={`/EditGame/${game._id}`} passHref>
+                        {isAdmin && <Link href={`/EditGame/${game._id}`} passHref>
                             <Button variant="primary" size="sm">Editar</Button>
-                        </Link>
+                        </Link>}
 
-                        <Button onClick={() => deleteGame(game._id)} size="sm">Eliminar</Button>
+                        {isAdmin && <Button onClick={() => deleteGame(game._id)} size="sm">Eliminar</Button>}
                     </div>
                 </Card>
             ))

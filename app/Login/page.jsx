@@ -31,8 +31,6 @@ const SignupForm = () => {
             if (response.ok) {
                 const responseData = await response.json()
                 const authoToken = responseData.authToken
-
-                console.log('EL PUTOTOKEN EN CLIENTE ==>', authoToken)
                 login(authoToken)
                 router.push('/')
             } else {

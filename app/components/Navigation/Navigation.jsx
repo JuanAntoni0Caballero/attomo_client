@@ -7,9 +7,9 @@ import './Navigation.css'
 
 function Navigation() {
 
-    const Token = useContext(AuthContext)
+    const { userData } = useContext(AuthContext)
 
-    const isAdmin = Token && Token.role === 'ADMIN'
+    const isAdmin = userData.role === 'ADMIN'
 
 
     return (
@@ -25,6 +25,7 @@ function Navigation() {
                     >
                         <Link className='Nav-bar-link' href="/Signup">Signup</Link>
                         <Link className='Nav-bar-link' href="/Login" >LogIn </Link>
+                        <Navbar.Brand className='Nav-bar-welcome'> Bienvenido!! {userData.username}</Navbar.Brand>
                         {isAdmin && <Link className='Nav-bar-link' href="/AdminAcces" >Administración </Link>}
                     </Nav>
                     <Link className='Nav-bar-link' href="/Contact" >Contacto </Link>
