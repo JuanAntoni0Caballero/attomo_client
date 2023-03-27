@@ -3,10 +3,13 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Button, Form } from 'react-bootstrap'
+import { useContext } from 'react'
+import { AuthContext } from '../contexts/auth.context'
 import './login.css'
 
 const SignupForm = () => {
     const router = useRouter()
+    const { login } = useContext(AuthContext)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -24,9 +27,13 @@ const SignupForm = () => {
                     password,
                 }),
             })
-            const data = await response.json()
 
             if (response.ok) {
+                const responseData = await response.json()
+                const authoToken = responseData.authToken
+
+                console.log('EL PUTOTOKEN EN CLIENTE ==>', authoToken)
+                login(authoToken)
                 router.push('/')
             } else {
                 console.error('Error:', data.message)

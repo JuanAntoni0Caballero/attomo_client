@@ -1,7 +1,10 @@
+'use client'
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'globals.css'
 import Navigation from './components/Navigation/Navigation';
 import Footer from './components/Footer/page';
+import { AuthProvider } from './contexts/auth.context';
 
 
 import dynamic from 'next/dynamic';
@@ -15,15 +18,17 @@ const RootLayout = ({ children }) => {
 
   return (
     <html lang="en">
-      <body >
-        <header>
-          <title>Game Score Hub</title>
-        </header>
-        <Navigation />
-        {children}
-        <Footer />
-      </body>
-    </html>
+      <AuthProvider>
+        <body >
+          <header>
+            <title>Game Score Hub</title>
+          </header>
+          <Navigation />
+          {children}
+          <Footer />
+        </body>
+      </AuthProvider>
+    </html >
   )
 }
 

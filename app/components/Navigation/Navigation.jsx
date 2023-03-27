@@ -1,9 +1,17 @@
 'use client'
-import { Container, Button, Form, Nav, Navbar, NavDropdown } from 'react-bootstrap'
+import { useContext } from 'react';
+import { AuthContext } from '@/app/contexts/auth.context';
+import { Container, Button, Form, Nav, Navbar } from 'react-bootstrap'
 import Link from 'next/link';
 import './Navigation.css'
 
 function Navigation() {
+
+    const Token = useContext(AuthContext)
+
+    const isAdmin = Token && Token.role === 'ADMIN'
+
+
     return (
         <Navbar expand="lg" className="Nav-bar">
             <Container fluid >
@@ -17,7 +25,7 @@ function Navigation() {
                     >
                         <Link className='Nav-bar-link' href="/Signup">Signup</Link>
                         <Link className='Nav-bar-link' href="/Login" >LogIn </Link>
-                        <Link className='Nav-bar-link' href="/AdminAcces" >Administración </Link>
+                        {isAdmin && <Link className='Nav-bar-link' href="/AdminAcces" >Administración </Link>}
                     </Nav>
                     <Link className='Nav-bar-link' href="/Contact" >Contacto </Link>
                     <Form className="d-flex">
