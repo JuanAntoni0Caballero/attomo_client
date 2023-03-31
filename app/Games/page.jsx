@@ -45,8 +45,8 @@ export default function GamesPage() {
 
     const likeGame = async (game_id) => {
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/games/likeGame/${game_id}`, {
-                method: 'PUT'
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/games/likeGame/${game_id}/${userData._id}`, {
+                method: 'POST'
             })
             const data = await response.json()
             fetchGames()
