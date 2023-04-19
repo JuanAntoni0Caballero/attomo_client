@@ -37,30 +37,6 @@ const SignupForm = () => {
     }
 
     return (
-        // <Form onSubmit={handleFormSubmit}>
-        //     <Form.Group className="mb-3" controlId="formBasicEmail">
-        //         <Form.Label>Correo electrónico</Form.Label>
-        //         <Form.Control
-        //             type="email"
-        //             placeholder="Email"
-        //             value={email}
-        //             onChange={(e) => setEmail(e.target.value)}
-        //         />
-        //     </Form.Group>
-        //     <Form.Group className="mb-3" controlId="formBasicPassword">
-        //         <Form.Label>Contraseña</Form.Label>
-        //         <Form.Control
-        //             type="password"
-        //             placeholder="Contraseña"
-        //             value={password}
-        //             onChange={(e) => setPassword(e.target.value)}
-        //         />
-        //     </Form.Group>
-        //     <Button variant="dark" type="submit">
-        //         Submit
-        //     </Button>
-        // </Form>
-
         <div className='container-Login-Form'>
 
             <h1>Bienvenido de nuevo a Game Score Hub!!!</h1>
