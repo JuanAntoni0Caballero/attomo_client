@@ -38,6 +38,11 @@
 
 .container-gamesCardButton {
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
-    padding-top: 10px;
+    align-items: flex-end;
+    align-content: flex-end;
+    gap: 10px;
+    padding-bottom: 40px;
 }

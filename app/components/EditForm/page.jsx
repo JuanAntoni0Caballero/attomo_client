@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { Button, Form } from 'react-bootstrap';
+import('./editForm.css')
 
 
 const EditForm
@@ -60,33 +61,40 @@ const EditForm
 
 
         return (
-            <Form onSubmit={handleFormSubmit}>
-                <Form.Group className="mb-3" controlId="formBasicName">
-                    <Form.Label>Nombre</Form.Label>
-                    <Form.Control
-                        type="text"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                    />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Categoria</Form.Label>
-                    <Form.Control
-                        type="text"
-                        value={category}
-                        onChange={(e) => setCategory(e.target.value)}
-                    />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Descripcion</Form.Label>
-                    <Form.Control
-                        type="text"
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                    />
-                </Form.Group>
-                <Button variant="primary" type="submit"> Submit </Button>
-            </Form >
+            <section className='container-Edit-Form'>
+                <h1>Aquí puedes editar el juego!</h1>
+                <hr className='hr-Edit-Form' />
+
+                <Form onSubmit={handleFormSubmit}>
+                    <Form.Group controlId="formBasicName">
+                        <Form.Label>Nombre</Form.Label>
+                        <hr />
+                        <Form.Control
+                            type="text"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                        />
+                    </Form.Group>
+                    <Form.Group controlId="formBasicEmail">
+                        <Form.Label>Categoria</Form.Label>
+                        <hr />
+                        <Form.Control
+                            type="text"
+                            value={category}
+                            onChange={(e) => setCategory(e.target.value)}
+                        />
+                    </Form.Group>
+                    <Form.Group controlId="formBasicEmail">
+                        <Form.Label>Descripcion</Form.Label>
+                        <hr />
+                        <textarea className='textarea' name='textarea' type="text"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                        > </textarea>
+                    </Form.Group>
+                    <Button variant="primary" type="submit"> Submit </Button>
+                </Form>
+            </section >
         )
 
     }
