@@ -1,17 +1,31 @@
 'use client'
-
-import { Container, Navbar, Nav } from 'react-bootstrap';
+import { Container, Button, Form, Nav, Navbar, NavDropdown } from 'react-bootstrap'
 import Link from 'next/link';
 
 function Navigation() {
     return (
-        <Navbar className="bg-body-tertiary">
-            <Container>
-                <Navbar.Brand href="/">Game Score Hub</Navbar.Brand>
-                <Navbar.Toggle />
-                <Navbar.Collapse className="justify-content-end">
-                    <Link href="/SignupForm">Signup</Link>
-                    <Link href="/dashboard">LogIn</Link>
+        <Navbar expand="lg" className="bg-body-tertiary">
+            <Container fluid>
+                <Link href="/">Game Score Hub</Link>
+                <Navbar.Toggle aria-controls="navbarScroll" />
+                <Navbar.Collapse id="navbarScroll">
+                    <Nav
+                        className="me-auto my-2 my-lg-0"
+                        style={{ maxHeight: '100px' }}
+                        navbarScroll
+                    >
+                        <Link href="/SignupForm">Signup</Link>
+                        <Link href="/LogInForm" >LogIn </Link>
+                    </Nav>
+                    <Form className="d-flex">
+                        <Form.Control
+                            type="search"
+                            placeholder="Search"
+                            className="me-2"
+                            aria-label="Search"
+                        />
+                        <Button variant="outline-success">Search</Button>
+                    </Form>
                 </Navbar.Collapse>
             </Container>
         </Navbar>
