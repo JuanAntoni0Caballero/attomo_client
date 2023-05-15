@@ -1,6 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import 'globals.css'
-import { ReactDOM } from 'react-dom';
 import Navigation from './components/Navigation/Navigation';
 import Footer from './components/Footer/page';
 

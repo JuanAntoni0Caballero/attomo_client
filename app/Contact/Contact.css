@@ -1,0 +1,40 @@
+.contact-container {
+    display: flex;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    background-color: #f7f7f7;
+}
+
+
+.contact-info {
+    padding: 50px;
+}
+
+
+.contact-info h1 {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.contact-info h4,
+.contact-info h2,
+.contact-info h3 {
+    font-size: 16px;
+    margin: 0;
+}
+
+.contact-info h2 {
+    color: #666;
+}
+
+.contact-info h3 {
+    color: #333;
+    font-weight: bold;
+}
+
+.contact-container img {
+    width: 250px;
+    border-radius: 50%;
+}

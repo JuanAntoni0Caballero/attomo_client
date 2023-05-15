@@ -1,6 +1,7 @@
 'use client'
 import { Container, Button, Form, Nav, Navbar, NavDropdown } from 'react-bootstrap'
 import Link from 'next/link';
+import './Navigation.css'
 
 function Navigation() {
     return (
@@ -16,6 +17,7 @@ function Navigation() {
                     >
                         <Link href="/SignupForm">Signup</Link>
                         <Link href="/LogInForm" >LogIn </Link>
+                        <Link href="/Contact" >Contacto </Link>
                     </Nav>
                     <Form className="d-flex">
                         <Form.Control
