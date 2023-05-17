@@ -6,7 +6,7 @@ import './Navigation.css'
 function Navigation() {
     return (
         <Navbar expand="lg" className="bg-body-tertiary">
-            <Container fluid>
+            <Container fluid className='nav-container'>
                 <Link href="/">Game Score Hub</Link>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
@@ -15,8 +15,8 @@ function Navigation() {
                         style={{ maxHeight: '100px' }}
                         navbarScroll
                     >
-                        <Link href="/SignupForm">Signup</Link>
-                        <Link href="/LogInForm" >LogIn </Link>
+                        <Link href="/Signup">Signup</Link>
+                        <Link href="/Login" >LogIn </Link>
                         <Link href="/Contact" >Contacto </Link>
                     </Nav>
                     <Form className="d-flex">

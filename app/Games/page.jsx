@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { Card, ListGroup } from 'react-bootstrap'
+import './games.css'
 
 export default function GamesPage() {
 
@@ -10,7 +11,7 @@ export default function GamesPage() {
     useEffect(() => {
         const fetchGames = async () => {
             try {
-                const response = await fetch('http://localhost:5005/api/games/getAllGames')
+                const response = await await fetch(`${process.env.NEXT_PUBLIC_API_URL}/games/getAllGames`)
                 const data = await response.json()
                 setGames(data)
             } catch (error) {
@@ -22,9 +23,9 @@ export default function GamesPage() {
     }, [])
 
     return (
-        <section>
+        <section className='games-container'>
             {games.map((game) => (
-                <Card key={game.id} style={{ width: '18rem' }}>
+                <Card key={game.id} className='games-card'>
                     <Card.Img variant="top" src={game.image} />
                     <Card.Body>
                         <Card.Title>{game.name}</Card.Title>
@@ -35,18 +36,11 @@ export default function GamesPage() {
                     </Card.Body>
                     <ListGroup className="list-group-flush">
                         <ListGroup.Item>{game.category}</ListGroup.Item>
-                        <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-                        <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
                     </ListGroup>
                     <Card.Body>
-                        <Card.Link href="#">Card Link</Card.Link>
-                        <Card.Link href="#">Another Link</Card.Link>
+                        <Card.Link href="#">Me Gusta</Card.Link>
                     </Card.Body>
                 </Card>
-                // <article key={game.id}>
-                //     <h2>{game.name}</h2>
-                //     <p>{game.category}</p>
-                // </article>
             ))}
         </section>
     )

@@ -1,0 +1,10 @@
+.games-container {
+    display: flex;
+    justify-content: center;
+    padding: 80px;
+}
+
+.games-card {
+    width: 300px;
+    margin: 50px;
+}
