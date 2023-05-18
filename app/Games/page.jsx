@@ -1,26 +1,42 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Card, ListGroup } from 'react-bootstrap'
+import { Card, ListGroup, Button } from 'react-bootstrap'
 import './games.css'
 
 export default function GamesPage() {
 
     const [games, setGames] = useState([])
 
-    useEffect(() => {
-        const fetchGames = async () => {
-            try {
-                const response = await await fetch(`${process.env.NEXT_PUBLIC_API_URL}/games/getAllGames`)
-                const data = await response.json()
-                setGames(data)
-            } catch (error) {
-                console.error(error)
-            }
+    const fetchGames = async () => {
+        try {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/games/getAllGames`);
+            const data = await response.json();
+            setGames(data);
+        } catch (error) {
+            console.error(error);
         }
+    };
 
-        fetchGames()
-    }, [])
+    useEffect(() => {
+        fetchGames();
+    }, []);
+
+
+    const deleteGame = async (game_id) => {
+        try {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/games/deleteGame/${game_id}`, {
+                method: 'DELETE'
+            })
+            const data = await response.json()
+            console.log(data)
+            fetchGames()
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+
 
     return (
         <section className='games-container'>
@@ -29,16 +45,15 @@ export default function GamesPage() {
                     <Card.Img variant="top" src={game.image} />
                     <Card.Body>
                         <Card.Title>{game.name}</Card.Title>
-                        <Card.Text>
-                            Some quick example text to build on the card title and make up the
-                            bulk of the card's content.
-                        </Card.Text>
+                        <Card.Text> {game.description}</Card.Text>
                     </Card.Body>
                     <ListGroup className="list-group-flush">
                         <ListGroup.Item>{game.category}</ListGroup.Item>
                     </ListGroup>
                     <Card.Body>
-                        <Card.Link href="#">Me Gusta</Card.Link>
+                        <Button variant="dark" size="sm">Me gusta</Button>
+                        <Button variant="primary" size="sm">Editar</Button>
+                        <Button onClick={() => deleteGame(game._id)} size="sm">Eliminar</Button>
                     </Card.Body>
                 </Card>
             ))}

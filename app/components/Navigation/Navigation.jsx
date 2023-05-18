@@ -18,6 +18,7 @@ function Navigation() {
                         <Link href="/Signup">Signup</Link>
                         <Link href="/Login" >LogIn </Link>
                         <Link href="/Contact" >Contacto </Link>
+                        <Link href="/AdminAcces" >Administración </Link>
                     </Nav>
                     <Form className="d-flex">
                         <Form.Control
