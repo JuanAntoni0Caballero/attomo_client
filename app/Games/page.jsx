@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { Card, ListGroup, Button } from 'react-bootstrap'
+import Link from 'next/link'
 import './games.css'
 
 export default function GamesPage() {
@@ -52,7 +53,11 @@ export default function GamesPage() {
                     </ListGroup>
                     <Card.Body>
                         <Button variant="dark" size="sm">Me gusta</Button>
-                        <Button variant="primary" size="sm">Editar</Button>
+
+                        <Link href={`/EditGame/${game._id}`} passHref>
+                            <Button variant="primary" size="sm">Editar</Button>
+                        </Link>
+
                         <Button onClick={() => deleteGame(game._id)} size="sm">Eliminar</Button>
                     </Card.Body>
                 </Card>
