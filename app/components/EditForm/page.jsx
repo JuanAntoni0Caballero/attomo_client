@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { Button, Form } from 'react-bootstrap';
 
 
@@ -9,6 +9,7 @@ const EditForm
     = () => {
 
         const params = useParams();
+        const router = useRouter();
 
         const [name, setName] = useState('');
         const [category, setCategory] = useState('');
@@ -16,13 +17,12 @@ const EditForm
 
         const game = params
 
-        console.log('EL GAME==>', game.id)
 
 
         useEffect(() => {
             const fetchGames = async () => {
                 try {
-                    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/games/getGame/${game.id}`);
+                    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/games/getOneGame/${game.id}`);
                     const data = await response.json();
                     setName(data.name);
                     setCategory(data.category);
@@ -53,7 +53,6 @@ const EditForm
                 });
                 router.push('/');
                 const data = await response.json();
-                console.log(data);
             } catch (error) {
                 console.error(error);
             }
@@ -63,7 +62,7 @@ const EditForm
         return (
             <Form onSubmit={handleFormSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicName">
-                    <Form.Label>Nombre{game.id}</Form.Label>
+                    <Form.Label>Nombre</Form.Label>
                     <Form.Control
                         type="text"
                         value={name}

@@ -1,16 +1,16 @@
 'use client'
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { Button, Form } from 'react-bootstrap';
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { Button, Form } from 'react-bootstrap'
 
 const SignupForm = () => {
-    const router = useRouter();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const router = useRouter()
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
 
     const handleFormSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault()
 
         try {
             const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
@@ -22,18 +22,18 @@ const SignupForm = () => {
                     email,
                     password,
                 }),
-            });
-            const data = await response.json();
+            })
+            const data = await response.json()
 
             if (response.ok) {
-                router.push('/');
+                router.push('/')
             } else {
-                console.error('Error:', data.message);
+                console.error('Error:', data.message)
             }
         } catch (error) {
-            console.error(error);
+            console.error(error)
         }
-    };
+    }
 
     return (
         <Form onSubmit={handleFormSubmit}>
@@ -55,11 +55,11 @@ const SignupForm = () => {
                     onChange={(e) => setPassword(e.target.value)}
                 />
             </Form.Group>
-            <Button variant="primary" type="submit">
+            <Button variant="dark" type="submit">
                 Submit
             </Button>
         </Form>
-    );
-};
+    )
+}
 
-export default SignupForm;
+export default SignupForm

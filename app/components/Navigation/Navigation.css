@@ -1,4 +1,14 @@
-.nav-container {
-    background-color: black;
+.Nav-bar {
     padding: 10px;
+    background-color: aliceblue;
+}
+
+.Nav-bar-link {
+    text-decoration: none;
+    color: black;
+    margin-right: 10px;
+}
+
+.Nav-bar-link:hover {
+    color: #ff0000;
 }

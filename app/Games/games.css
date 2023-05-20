@@ -4,7 +4,42 @@
     padding: 80px;
 }
 
-.games-card {
+.GamesCard {
     width: 300px;
-    margin: 50px;
+    margin: 30px;
+    transition: transform 0.2s ease-out;
+    box-shadow:
+        0.7px 0.4px 1.2px rgba(0, 0, 0, 0.058),
+        1.7px 1px 2.7px rgba(0, 0, 0, 0.075),
+        2.9px 1.7px 4.7px rgba(0, 0, 0, 0.085),
+        4.6px 2.6px 7.5px rgba(0, 0, 0, 0.092),
+        7.1px 4.1px 11.6px rgba(0, 0, 0, 0.097),
+        11.2px 6.3px 18.1px rgba(0, 0, 0, 0.102),
+        18.5px 10.5px 30px rgba(0, 0, 0, 0.11),
+        37px 21px 60px rgba(0, 0, 0, 0.13);
+}
+
+.GamesCard:hover {
+    transform: scale(1.05);
+}
+
+.GamesCardImage {
+    height: 120px;
+    object-fit: cover;
+    border-radius: 0%;
+}
+
+.GamesCard-body p {
+    margin: 10px 0;
+}
+
+.GamesCardTitle {
+    height: 60px;
+    margin: 0;
+}
+
+.container-gamesCardButton {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 20px;
 }

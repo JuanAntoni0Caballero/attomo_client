@@ -25,7 +25,7 @@ const SignupForm = () => {
                     password,
                 }),
             });
-            router.push('/login')
+            router.push('/Login')
             const data = await response.json();
             console.log(data);
         } catch (error) {

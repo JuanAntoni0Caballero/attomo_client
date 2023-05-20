@@ -42,26 +42,26 @@ export default function GamesPage() {
     return (
         <section className='games-container'>
             {games.map((game) => (
-                <Card key={game.id} className='games-card'>
-                    <Card.Img variant="top" src={game.image} />
-                    <Card.Body>
-                        <Card.Title>{game.name}</Card.Title>
-                        <Card.Text> {game.description}</Card.Text>
-                    </Card.Body>
-                    <ListGroup className="list-group-flush">
-                        <ListGroup.Item>{game.category}</ListGroup.Item>
-                    </ListGroup>
-                    <Card.Body>
-                        <Button variant="dark" size="sm">Me gusta</Button>
+                <Card className='GamesCard'>
+                    <Card.Img className='GamesCardImage' variant="top" src={game.image} />
 
-                        <Link href={`/EditGame/${game._id}`} passHref>
-                            <Button variant="primary" size="sm">Editar</Button>
-                        </Link>
+                    <Card.Body className='GamesCard-body'>
+                        <Card.Title className='GamesCardTitle'>{game.name}</Card.Title>
+                        <p>{game.description}</p>
 
-                        <Button onClick={() => deleteGame(game._id)} size="sm">Eliminar</Button>
+                        < div className='container-gamesCardButton'>
+                            <Button variant="dark" size="sm">Me gusta</Button>
+
+                            <Link href={`/EditGame/${game._id}`} passHref>
+                                <Button variant="primary" size="sm">Editar</Button>
+                            </Link>
+
+                            <Button onClick={() => deleteGame(game._id)} size="sm">Eliminar</Button>
+                        </div>
                     </Card.Body>
                 </Card>
-            ))}
-        </section>
+            ))
+            }
+        </section >
     )
 }
