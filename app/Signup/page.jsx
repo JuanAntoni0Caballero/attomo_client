@@ -3,6 +3,9 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button, Form } from 'react-bootstrap';
+import './signup.css'
+
+
 
 const SignupForm = () => {
     const router = useRouter();
@@ -34,38 +37,45 @@ const SignupForm = () => {
     };
 
     return (
-        <Form onSubmit={handleFormSubmit}>
-            <Form.Group className="mb-3" controlId="formBasicName">
-                <Form.Label>Nombre</Form.Label>
-                <Form.Control
-                    type="text"
-                    placeholder="Nombre"
-                    value={username}
-                    onChange={(e) => setUserName(e.target.value)}
-                />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Correo electrónico</Form.Label>
-                <Form.Control
-                    type="email"
-                    placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>Contraseña</Form.Label>
-                <Form.Control
-                    type="password"
-                    placeholder="Contraseña"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-            </Form.Group>
-            <Button variant="primary" type="submit">
-                Submit
-            </Button>
-        </Form>
+
+        <div className='container-Sigunp-Form'>
+
+            <h1>Bienvenido a Game Score Hub!!!</h1>
+            <hr className='hr-Sigunp-Form' />
+
+            <Form onSubmit={handleFormSubmit}>
+                <Form.Group className="Form-group" controlId="formBasicName">
+                    <Form.Label>Nombre</Form.Label>
+                    <Form.Control className='Sigunp-Form-control'
+                        type="text"
+                        placeholder="Nombre"
+                        value={username}
+                        onChange={(e) => setUserName(e.target.value)}
+                    />
+                </Form.Group>
+                <Form.Group className="Form-group" controlId="formBasicEmail">
+                    <Form.Label>Correo electrónico</Form.Label>
+                    <Form.Control className='Sigunp-Form-control'
+                        type="email"
+                        placeholder="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                </Form.Group>
+                <Form.Group className="Form-group" controlId="formBasicPassword">
+                    <Form.Label>Contraseña</Form.Label>
+                    <Form.Control className='Sigunp-Form-control'
+                        type="password"
+                        placeholder="Contraseña"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                </Form.Group>
+                <Button className='Sigunp-Form-button' type="submit">
+                    Submit
+                </Button>
+            </Form>
+        </div>
     );
 };
 

@@ -1,4 +1,4 @@
-import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import 'globals.css'
 import Navigation from './components/Navigation/Navigation';
 import Footer from './components/Footer/page';
