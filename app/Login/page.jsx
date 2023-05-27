@@ -68,6 +68,7 @@ const SignupForm = () => {
             <Form onSubmit={handleFormSubmit}>
                 <Form.Group className="Form-group" controlId="formBasicEmail">
                     <Form.Label>Correo electrónico</Form.Label>
+                    <hr />
                     <Form.Control className='Login-Form-control'
                         type="email"
                         placeholder="Email"
@@ -77,6 +78,7 @@ const SignupForm = () => {
                 </Form.Group>
                 <Form.Group className="Form-group" controlId="formBasicPassword">
                     <Form.Label>Contraseña</Form.Label>
+                    <hr />
                     <Form.Control className='Login-Form-control'
                         type="password"
                         placeholder="Contraseña"

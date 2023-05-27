@@ -1,10 +1,12 @@
 .games-container {
+    margin: 20px;
     display: flex;
     justify-content: center;
     padding: 20px;
     min-height: 100vh;
     flex-wrap: wrap;
 }
+
 
 .GamesCard {
     width: 300px;

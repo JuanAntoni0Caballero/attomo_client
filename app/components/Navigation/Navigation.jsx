@@ -17,10 +17,11 @@ function Navigation() {
                     >
                         <Link className='Nav-bar-link' href="/Signup">Signup</Link>
                         <Link className='Nav-bar-link' href="/Login" >LogIn </Link>
-                        <Link className='Nav-bar-link' href="/Contact" >Contacto </Link>
                         <Link className='Nav-bar-link' href="/AdminAcces" >Administración </Link>
                     </Nav>
+                    <Link className='Nav-bar-link' href="/Contact" >Contacto </Link>
                     <Form className="d-flex">
+
                         <Form.Control
                             type="search"
                             placeholder="Search"
