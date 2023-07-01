@@ -25,7 +25,6 @@ export const AuthProvider = ({ children }) => {
 
             if (response.ok) {
                 const userData = await response.json();
-                // console.log('LA RESPONSE ==> ', response)
                 setUserData(userData)
             } else {
                 console.error('Error al obtener los datos del usuario');
