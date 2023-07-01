@@ -25,6 +25,7 @@ export const AuthProvider = ({ children }) => {
 
             if (response.ok) {
                 const userData = await response.json();
+                // console.log('LA RESPONSE ==> ', response)
                 setUserData(userData)
             } else {
                 console.error('Error al obtener los datos del usuario');
@@ -46,7 +47,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ token, userData, login, logout }}>
+        <AuthContext.Provider value={{ token, userData, setUserData, login, logout }}>
             {children}
         </AuthContext.Provider>
     );

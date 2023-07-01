@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { Button, Form } from 'react-bootstrap';
+import Link from 'next/link';
 import('./editForm.css')
 
 
@@ -15,6 +16,7 @@ const EditForm
         const [name, setName] = useState('');
         const [category, setCategory] = useState('');
         const [description, setDescription] = useState('');
+        const [image, setImage] = useState('');
 
         const game = params
 
@@ -50,6 +52,7 @@ const EditForm
                         name,
                         category,
                         description,
+                        image,
                     }),
                 });
                 router.push('/');
@@ -92,7 +95,21 @@ const EditForm
                             onChange={(e) => setDescription(e.target.value)}
                         > </textarea>
                     </Form.Group>
-                    <Button variant="primary" type="submit"> Submit </Button>
+                    <Form.Group controlId="formBasicEmail">
+                        <Form.Label>Añade una imagen</Form.Label>
+                        <hr />
+                        <Form.Control
+                            type="text"
+                            placeholder='URL'
+                            value={image}
+                            onChange={(e) => setImage(e.target.value)}
+                        />
+                    </Form.Group>
+
+                    <div className='container-Button-Edit-Form'>
+                        <Link href='/' className='link-Edit-Form'>Volver</Link>
+                        <Button className='button-Edit-Form' type="submit"> Enviar </Button>
+                    </div>
                 </Form>
             </section >
         )

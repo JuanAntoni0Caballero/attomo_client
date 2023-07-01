@@ -7,10 +7,18 @@ import './Navigation.css'
 
 function Navigation() {
 
-    const { userData } = useContext(AuthContext)
+    const { userData, logout } = useContext(AuthContext)
 
     const isAdmin = userData.role === 'ADMIN'
 
+
+    const isLogin = () => {
+        return !!userData
+    }
+
+    const toLogOut = () => {
+        logout()
+    }
 
     return (
         <Navbar expand="lg" className="Nav-bar">
@@ -24,19 +32,36 @@ function Navigation() {
                         navbarScroll
                     >
                         <Link className='Nav-bar-link' href="/Signup">Signup</Link>
-                        <Link className='Nav-bar-link' href="/Login" >LogIn </Link>
-                        <Navbar.Brand className='Nav-bar-welcome'> Bienvenido!! {userData.username}</Navbar.Brand>
-                        {isAdmin && <Link className='Nav-bar-link' href="/AdminAcces" >Administración </Link>}
+
+                        {
+                            isLogin()
+
+                                ?
+                                (
+                                    <Button onClick={toLogOut} className='Nav-bar-logout-button'>LogOut</Button>
+                                )
+                                :
+                                (
+                                    <Link className='Nav-bar-link' href="/Login" >LogIn </Link>
+                                )
+                        }
+
+                        {
+                            isLogin() &&
+                            <Navbar.Brand className='Nav-bar-welcome'> Bienvenido!! {userData.username}</Navbar.Brand>
+                        }
+
+                        {isAdmin && <Link className='Nav-bar-link' href="/gameCreate" >Creación de Juegos </Link>}
                     </Nav>
                     <Link className='Nav-bar-link' href="/Contact" >Contacto </Link>
                     <Form className="d-flex">
 
-                        <Form.Control
+                        <Form.Control className='Nav-bar-search-input'
                             type="search"
                             placeholder="Search"
                             aria-label="Search"
                         />
-                        <Button >Search</Button>
+                        <Button className='Nav-bar-search-button' >Search</Button>
                     </Form>
                 </Navbar.Collapse>
             </Container>

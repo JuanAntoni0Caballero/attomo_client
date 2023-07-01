@@ -3,13 +3,14 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button, Form } from 'react-bootstrap';
-import './adminAcces.css'
+import './gameCreate.css'
 
 const CreateGame = () => {
     const router = useRouter();
     const [name, setName] = useState('');
     const [category, setCategory] = useState('');
     const [description, setDescription] = useState('');
+    const [image, setImage] = useState('');
 
 
     const handleFormSubmit = async (e) => {
@@ -24,7 +25,8 @@ const CreateGame = () => {
                 body: JSON.stringify({
                     name,
                     category,
-                    description
+                    description,
+                    image
                 }),
             });
             router.push('/')
@@ -67,6 +69,16 @@ const CreateGame = () => {
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                     > </textarea>
+                </Form.Group>
+                <Form.Group controlId="formBasicEmail">
+                    <Form.Label>Añade una imagen</Form.Label>
+                    <hr />
+                    <Form.Control
+                        type="text"
+                        placeholder='URL'
+                        value={image}
+                        onChange={(e) => setImage(e.target.value)}
+                    />
                 </Form.Group>
                 <Button variant="primary" type="submit"> Submit </Button>
             </Form>

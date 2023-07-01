@@ -7,11 +7,15 @@ import { useContext } from 'react'
 import { AuthContext } from '../contexts/auth.context'
 import './login.css'
 
-const SignupForm = () => {
+const LoginForm = () => {
+
+
     const router = useRouter()
     const { login } = useContext(AuthContext)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+
+
 
     const handleFormSubmit = async (e) => {
         e.preventDefault()
@@ -34,10 +38,10 @@ const SignupForm = () => {
                 login(authoToken)
                 router.push('/')
             } else {
-                console.error('Error:', data.message)
+                console.error('Error:', error)
             }
         } catch (error) {
-            console.error(error)
+            console.error('ERROR ==> ', error)
         }
     }
 
@@ -67,6 +71,7 @@ const SignupForm = () => {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </Form.Group>
+
                 <Button className='Login-Form-button' type="submit">
                     Submit
                 </Button>
@@ -75,4 +80,4 @@ const SignupForm = () => {
     )
 }
 
-export default SignupForm
+export default LoginForm
