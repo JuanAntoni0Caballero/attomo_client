@@ -38,7 +38,7 @@ function Navigation() {
 
                                 ?
                                 (
-                                    <Button onClick={toLogOut} className='Nav-bar-logout-button'>LogOut</Button>
+                                    <Link href={'/'} onClick={toLogOut} className='Nav-bar-link'>LogOut</Link>
                                 )
                                 :
                                 (
@@ -62,10 +62,11 @@ function Navigation() {
                             aria-label="Search"
                         />
                         <Button className='Nav-bar-search-button' >Search</Button>
+
                     </Form>
                 </Navbar.Collapse>
             </Container>
-        </Navbar>
+        </Navbar >
     );
 }
 

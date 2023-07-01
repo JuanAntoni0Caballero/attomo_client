@@ -19,20 +19,6 @@
     margin-top: 10px;
 }
 
-
-.Nav-bar-logout-button {
-    background: none;
-    border: none;
-    padding: 0;
-    margin-right: 20px;
-    color: black;
-}
-
-.Nav-bar-logout-button:hover {
-    background: none;
-    color: red;
-}
-
 .Nav-bar-search-button {
     background: none;
     border: none;

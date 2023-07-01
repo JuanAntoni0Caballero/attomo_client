@@ -10,7 +10,7 @@
 
 .GamesCard {
     width: 300px;
-    height: 380px;
+    height: 450px;
     margin: 10px;
     transition: transform 0.2s ease-out;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -44,7 +44,7 @@
     align-items: flex-end;
     align-content: flex-end;
     gap: 10px;
-    padding-bottom: 40px;
+    padding-bottom: 20px;
 }
 
 .buttons-card-game {
@@ -60,4 +60,11 @@
 .buttons-card-game:hover {
     background: none;
     color: black;
+}
+
+.container-likes-games {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px;
 }
