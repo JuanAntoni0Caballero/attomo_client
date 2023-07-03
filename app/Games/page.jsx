@@ -35,7 +35,6 @@ export default function GamesPage() {
             const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/games/searchGames?searchTerm=${searchTermValue}`);
             const searchData = await response.json();
             setSearchData(searchData)
-            console.log('EL JUEGO BUSCADO ==>', searchData);
         } catch (error) {
             console.error(error);
         }

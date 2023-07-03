@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { Button, Form } from 'react-bootstrap';
+import ErrorsForm from '../ErrorsForm/ErrorsForm';
 import Link from 'next/link';
 import('./editForm.css')
 
@@ -17,6 +18,7 @@ const EditForm
         const [category, setCategory] = useState('');
         const [description, setDescription] = useState('');
         const [image, setImage] = useState('');
+        const [errors, setErrors] = useState([]);
 
         const game = params
 
@@ -30,6 +32,7 @@ const EditForm
                     setName(data.name);
                     setCategory(data.category);
                     setDescription(data.description);
+                    setImage(data.image);
 
                 } catch (error) {
                     console.log(error);
@@ -55,8 +58,13 @@ const EditForm
                         image,
                     }),
                 });
-                router.push('/');
-                const data = await response.json();
+                if (response.ok) {
+                    router.push('/')
+                    const data = await response.json();
+                } else {
+                    const errorData = await response.json();
+                    setErrors(errorData.errorMessages)
+                }
             } catch (error) {
                 console.error(error);
             }
@@ -90,7 +98,8 @@ const EditForm
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>Descripcion</Form.Label>
                         <hr />
-                        <textarea className='textarea' name='textarea' type="text"
+                        <textarea className='textarea'
+                            type="text"
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                         > </textarea>
@@ -108,9 +117,13 @@ const EditForm
 
                     <div className='container-Button-Edit-Form'>
                         <Link href='/' className='link-Edit-Form'>Volver</Link>
-                        <Button className='button-Edit-Form' type="submit"> Enviar </Button>
+                        <Button className='button-Edit-Form' type="submit">Editar</Button>
                     </div>
                 </Form>
+
+                <hr />
+
+                {errors?.length > 0 && <ErrorsForm>{errors.map(elm => <p key={elm._id}>{elm}</p>)}</ErrorsForm>}
             </section >
         )
 

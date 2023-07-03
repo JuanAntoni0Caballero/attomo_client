@@ -3,14 +3,17 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button, Form } from 'react-bootstrap';
+import ErrorsForm from '../components/ErrorsForm/ErrorsForm';
 import './gameCreate.css'
 
 const CreateGame = () => {
+
     const router = useRouter();
     const [name, setName] = useState('');
     const [category, setCategory] = useState('');
     const [description, setDescription] = useState('');
     const [image, setImage] = useState('');
+    const [errors, setErrors] = useState([]);
 
 
     const handleFormSubmit = async (e) => {
@@ -29,11 +32,15 @@ const CreateGame = () => {
                     image
                 }),
             });
-            router.push('/')
-            const data = await response.json();
-            console.log(data);
-        } catch (error) {
-            console.error(error);
+            if (response.ok) {
+                router.push('/')
+                const data = await response.json();
+            } else {
+                const errorData = await response.json();
+                setErrors(errorData.errorMessages)
+            }
+        } catch (err) {
+            console.error(err);
         }
     };
 
@@ -82,6 +89,9 @@ const CreateGame = () => {
                 </Form.Group>
                 <Button variant="primary" type="submit"> Submit </Button>
             </Form>
+            <hr />
+
+            {errors?.length > 0 && <ErrorsForm>{errors.map(elm => <p key={elm._id}>{elm}</p>)}</ErrorsForm>}
         </div >
     );
 };
