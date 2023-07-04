@@ -68,3 +68,28 @@
     align-items: center;
     padding: 10px;
 }
+
+
+.container-imput {
+    display: flex;
+    justify-content: center;
+}
+
+.Search-button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin-right: 20px;
+    color: black;
+}
+
+.Search-button:hover {
+    background: none;
+    color: red;
+}
+
+.Search-input {
+    width: 300px;
+    margin-right: 20px;
+    margin-top: 10px;
+}

@@ -4,7 +4,7 @@
 import { useContext } from 'react';
 import { AuthContext } from '@/app/contexts/auth.context';
 import { useState, useEffect } from 'react'
-import { Card, Button } from 'react-bootstrap'
+import { Card, Button, Form } from 'react-bootstrap'
 import Link from 'next/link'
 import './games.css'
 
@@ -14,7 +14,7 @@ export default function GamesPage() {
     const { userData } = useContext(AuthContext)
     const isAdmin = userData.role === 'ADMIN'
     const [games, setGames] = useState([])
-    const [searchTerm, setSearchTerm] = useState('');
+    const [searchData, setSearchData] = useState([]);
 
     const fetchGames = async () => {
         try {
@@ -27,6 +27,20 @@ export default function GamesPage() {
             console.error(error);
         }
     };
+
+    const searchFormSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            const searchTermValue = event.target.elements.searchTerm.value;
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/games/searchGames?searchTerm=${searchTermValue}`);
+            const searchData = await response.json();
+            setSearchData(searchData)
+            console.log('EL JUEGO BUSCADO ==>', searchData);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
 
     useEffect(() => {
         fetchGames();
@@ -63,49 +77,63 @@ export default function GamesPage() {
         }
     }
 
+
+
     return (
 
-        <div>
+        <section>
 
-            <section className='games-container'>
-                {games.map((game) => (
-                    <Card key={game._id} className='GamesCard'>
-                        <Card.Img className='GamesCardImage' variant="top" src={game.image} />
+            <div className='container-imput'>
+                <Form className="d-flex" onSubmit={searchFormSubmit}>
 
-                        <Card.Body className='GamesCard-body'>
-                            <Card.Title className='GamesCardTitle'>{game.name}</Card.Title>
+                    <Form.Control
+                        className='Search-input'
+                        type="search"
+                        placeholder="Buscador"
+                        aria-label="Search"
+                        name='searchTerm'
+                    />
+                    <Button className='Search-button' type='submit'>Buscar</Button>
+
+                </Form>
+
+            </div>
+
+
+            <div className="games-container">
+
+                {(searchData.length === 0 ? games : searchData).map((game) => (
+                    <Card key={game._id} className="GamesCard">
+                        <Card.Img className="GamesCardImage" variant="top" src={game.image} />
+                        <Card.Body className="GamesCard-body">
+                            <Card.Title className="GamesCardTitle">{game.name}</Card.Title>
                             <Card.Text>{game.description}</Card.Text>
                             <Card.Text>{game.category}</Card.Text>
                         </Card.Body>
-
-                        < div className='container-gamesCardButton'>
-
-                            < Button key={game._id} className='buttons-card-game' size="sm" onClick={() => likeGame(game)}>
-                                {game.likesBy.some((like) => (like.user === userData._id))
-                                    ?
-                                    ' No me gusta'
-                                    :
-                                    '  Me gusta'
-                                }
+                        <div className="container-gamesCardButton">
+                            <Button key={game._id} className="buttons-card-game" size="sm" onClick={() => likeGame(game)}>
+                                {game.likesBy.some((like) => like.user === userData._id) ? 'No me gusta' : 'Me gusta'}
                             </Button>
-
-
-                            {isAdmin && <Link href={`/EditGame/${game._id}`} passHref>
-                                <Button className='buttons-card-game' size="sm">Editar</Button>
-                            </Link>}
-
-                            {isAdmin && <Button className='buttons-card-game' onClick={() => deleteGame(game._id)} size="sm">Eliminar</Button>}
-
+                            {isAdmin && (
+                                <Link href={`/EditGame/${game._id}`} passHref>
+                                    <Button className="buttons-card-game" size="sm">
+                                        Editar
+                                    </Button>
+                                </Link>
+                            )}
+                            {isAdmin && (
+                                <Button className="buttons-card-game" onClick={() => deleteGame(game._id)} size="sm">
+                                    Eliminar
+                                </Button>
+                            )}
                         </div>
-                        <div className='container-likes-games'>
+                        <div className="container-likes-games">
                             <Card.Text key={game._id}>{game.likesBy.length}Likes</Card.Text>
                         </div>
-
                     </Card>
-                ))
-                }
-            </section >
+                ))}
+            </div>
 
-        </div>
+        </section >
     )
 }

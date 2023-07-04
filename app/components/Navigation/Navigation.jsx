@@ -1,7 +1,7 @@
 'use client'
 import { useContext } from 'react';
 import { AuthContext } from '@/app/contexts/auth.context';
-import { Container, Button, Form, Nav, Navbar } from 'react-bootstrap'
+import { Container, Nav, Navbar } from 'react-bootstrap'
 import Link from 'next/link';
 import './Navigation.css'
 
@@ -31,18 +31,18 @@ function Navigation() {
                         style={{ maxHeight: '100px' }}
                         navbarScroll
                     >
-                        <Link className='Nav-bar-link' href="/Signup">Signup</Link>
+                        <Link className='Nav-bar-link' href="/Signup">Registrate</Link>
 
                         {
                             isLogin()
 
                                 ?
                                 (
-                                    <Link href={'/'} onClick={toLogOut} className='Nav-bar-link'>LogOut</Link>
+                                    <Link href={'/'} onClick={toLogOut} className='Nav-bar-link'>Cierra Sesión</Link>
                                 )
                                 :
                                 (
-                                    <Link className='Nav-bar-link' href="/Login" >LogIn </Link>
+                                    <Link className='Nav-bar-link' href="/Login" >Accede </Link>
                                 )
                         }
 
@@ -54,16 +54,7 @@ function Navigation() {
                         {isAdmin && <Link className='Nav-bar-link' href="/gameCreate" >Creación de Juegos </Link>}
                     </Nav>
                     <Link className='Nav-bar-link' href="/Contact" >Contacto </Link>
-                    <Form className="d-flex">
 
-                        <Form.Control className='Nav-bar-search-input'
-                            type="search"
-                            placeholder="Search"
-                            aria-label="Search"
-                        />
-                        <Button className='Nav-bar-search-button' >Search</Button>
-
-                    </Form>
                 </Navbar.Collapse>
             </Container>
         </Navbar >
