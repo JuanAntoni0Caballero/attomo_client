@@ -12,7 +12,7 @@ const CreateGame = () => {
     const [name, setName] = useState('');
     const [category, setCategory] = useState('');
     const [description, setDescription] = useState('');
-    const [image, setImage] = useState('');
+    const [image, setImage] = useState();
     const [errors, setErrors] = useState([]);
 
 
@@ -44,6 +44,34 @@ const CreateGame = () => {
         }
     };
 
+
+
+    const handleInputChange = async (e) => {
+        e.preventDefault()
+
+        try {
+            const formData = new FormData()
+            formData.append('imageData', e.target.files[0])
+
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/upload/image`, {
+                method: 'POST',
+                body: formData
+            })
+
+            if (response.ok) {
+                const data = await response.json();
+                setImage(data.cloudinary_url)
+                console.log('LA IMAGEN CABRON ==>', data.cloudinary_url)
+            } else {
+                const errorData = await response.json();
+                setErrors(errorData.errorMessages)
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
+
     return (
         <div className='container-Create-Form'>
 
@@ -60,7 +88,7 @@ const CreateGame = () => {
                         onChange={(e) => setName(e.target.value)}
                     />
                 </Form.Group>
-                <Form.Group controlId="formBasicEmail">
+                <Form.Group controlId="formBasicCategory">
                     <Form.Label>Categoria</Form.Label>
                     <hr />
                     <Form.Control
@@ -69,7 +97,7 @@ const CreateGame = () => {
                         onChange={(e) => setCategory(e.target.value)}
                     />
                 </Form.Group>
-                <Form.Group controlId="formBasicEmail">
+                <Form.Group controlId="formBasicDescription">
                     <Form.Label>Descripcion</Form.Label>
                     <hr />
                     <textarea className='textarea' name='textarea' type="text"
@@ -77,14 +105,12 @@ const CreateGame = () => {
                         onChange={(e) => setDescription(e.target.value)}
                     > </textarea>
                 </Form.Group>
-                <Form.Group controlId="formBasicEmail">
+                <Form.Group controlId="formBasicImage">
                     <Form.Label>Añade una imagen</Form.Label>
                     <hr />
                     <Form.Control
-                        type="text"
-                        placeholder='URL'
-                        value={image}
-                        onChange={(e) => setImage(e.target.value)}
+                        type="file"
+                        onChange={handleInputChange}
                     />
                 </Form.Group>
                 <Button variant="primary" type="submit"> Submit </Button>
