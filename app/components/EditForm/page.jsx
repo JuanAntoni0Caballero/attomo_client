@@ -124,7 +124,7 @@ const EditForm
                         <textarea className='textarea'
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
-                        > </textarea>
+                        ></textarea>
                     </Form.Group>
                     <Form.Group controlId="formBasicImage">
                         <Form.Label>Añade una imagen</Form.Label>
