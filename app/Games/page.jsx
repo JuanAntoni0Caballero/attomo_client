@@ -105,26 +105,33 @@ export default function GamesPage() {
                     <Card key={game._id} className="GamesCard">
                         <Card.Img className="GamesCardImage" variant="top" src={game.image} />
                         <Card.Body className="GamesCard-body">
+
                             <Card.Title className="GamesCardTitle">{game.name}</Card.Title>
-                            <Card.Text>{game.description}</Card.Text>
-                            <Card.Text>{game.category}</Card.Text>
+
+                            <Card.Text className="Games-card-description">{game.description}</Card.Text>
+
+
                         </Card.Body>
-                        <div className="container-gamesCardButton">
-                            <Button key={game._id} className="buttons-card-game" size="sm" onClick={() => likeGame(game)}>
-                                {game.likesBy.some((like) => like.user === userData._id) ? 'No me gusta' : 'Me gusta'}
-                            </Button>
-                            {isAdmin && (
-                                <Link href={`/EditGame/${game._id}`} passHref>
-                                    <Button className="buttons-card-game" size="sm">
-                                        Editar
-                                    </Button>
-                                </Link>
-                            )}
-                            {isAdmin && (
-                                <Button className="buttons-card-game" onClick={() => deleteGame(game._id)} size="sm">
-                                    Eliminar
+                        <div className='containet-button-card'>
+                            <Card.Text className="Games-card-category">{game.category}</Card.Text>
+
+                            <div className="container-gamesCardButton">
+                                <Button key={game._id} className="buttons-card-game" size="sm" onClick={() => likeGame(game)}>
+                                    {game.likesBy.some((like) => like.user === userData._id) ? 'No me gusta' : 'Me gusta'}
                                 </Button>
-                            )}
+                                {isAdmin && (
+                                    <Link href={`/EditGame/${game._id}`} passHref>
+                                        <Button className="buttons-card-game" size="sm">
+                                            Editar
+                                        </Button>
+                                    </Link>
+                                )}
+                                {isAdmin && (
+                                    <Button className="buttons-card-game" onClick={() => deleteGame(game._id)} size="sm">
+                                        Eliminar
+                                    </Button>
+                                )}
+                            </div>
                         </div>
                         <div className="container-likes-games">
                             <Card.Text key={game._id}>{game.likesBy.length}Likes</Card.Text>

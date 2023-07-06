@@ -61,7 +61,6 @@ const CreateGame = () => {
             if (response.ok) {
                 const data = await response.json();
                 setImage(data.cloudinary_url)
-                console.log('LA IMAGEN CABRON ==>', data.cloudinary_url)
             } else {
                 const errorData = await response.json();
                 setErrors(errorData.errorMessages)
@@ -100,7 +99,8 @@ const CreateGame = () => {
                 <Form.Group controlId="formBasicDescription">
                     <Form.Label>Descripcion</Form.Label>
                     <hr />
-                    <textarea className='textarea' name='textarea' type="text"
+                    <textarea className='description-textarea'
+                        type="text"
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                     > </textarea>
