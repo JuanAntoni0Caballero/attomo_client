@@ -100,7 +100,6 @@ const CreateGame = () => {
                     <Form.Label>Descripcion</Form.Label>
                     <hr />
                     <textarea className='description-textarea'
-                        type="text"
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                     > </textarea>

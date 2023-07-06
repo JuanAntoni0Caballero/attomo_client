@@ -127,7 +127,8 @@ export default function GamesPage() {
                                     </Link>
                                 )}
                                 {isAdmin && (
-                                    <Button className="buttons-card-game" onClick={() => deleteGame(game._id)} size="sm">
+                                    <Button className="buttons-card-game"
+                                        onClick={() => deleteGame(game._id)} size="sm">
                                         Eliminar
                                     </Button>
                                 )}

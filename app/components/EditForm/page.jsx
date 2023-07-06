@@ -122,21 +122,10 @@ const EditForm
                         <Form.Label>Descripcion</Form.Label>
                         <hr />
                         <textarea className='textarea'
-                            type="text"
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                         > </textarea>
                     </Form.Group>
-                    {/* <Form.Group controlId="formBasicImage">
-                        <Form.Label>Añade una imagen</Form.Label>
-                        <hr />
-                        <Form.Control
-                            type="text"
-                            placeholder='URL'
-                            value={image}
-                            onChange={(e) => setImage(e.target.value)}
-                        />
-                    </Form.Group> */}
                     <Form.Group controlId="formBasicImage">
                         <Form.Label>Añade una imagen</Form.Label>
                         <hr />
