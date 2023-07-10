@@ -1,8 +1,8 @@
 'use client'
 
 
-import { useContext } from 'react';
-import { AuthContext } from '@/app/contexts/auth.context';
+import { useContext } from 'react'
+import { AuthContext } from '@/app/contexts/auth.context'
 import { useState, useEffect } from 'react'
 import { Card, Button, Form } from 'react-bootstrap'
 import Link from 'next/link'
@@ -14,36 +14,36 @@ export default function GamesPage() {
     const { userData } = useContext(AuthContext)
     const isAdmin = userData.role === 'ADMIN'
     const [games, setGames] = useState([])
-    const [searchData, setSearchData] = useState([]);
+    const [searchData, setSearchData] = useState([])
 
     const fetchGames = async () => {
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/games/getAllGames`);
-            const data = await response.json();
-            setGames(data);
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/games/getAllGames`)
+            const data = await response.json()
+            setGames(data)
         }
 
         catch (error) {
-            console.error(error);
+            console.error(error)
         }
-    };
+    }
 
     const searchFormSubmit = async (event) => {
-        event.preventDefault();
+        event.preventDefault()
         try {
-            const searchTermValue = event.target.elements.searchTerm.value;
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/games/searchGames?searchTerm=${searchTermValue}`);
-            const searchData = await response.json();
+            const searchTermValue = event.target.elements.searchTerm.value
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/games/searchGames?searchTerm=${searchTermValue}`)
+            const searchData = await response.json()
             setSearchData(searchData)
         } catch (error) {
-            console.error(error);
+            console.error(error)
         }
-    };
+    }
 
 
     useEffect(() => {
-        fetchGames();
-    }, []);
+        fetchGames()
+    }, [])
 
 
     const deleteGame = async (game_id) => {

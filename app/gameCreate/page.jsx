@@ -1,23 +1,23 @@
 'use client'
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { Button, Form } from 'react-bootstrap';
-import ErrorsForm from '../components/ErrorsForm/ErrorsForm';
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { Button, Form } from 'react-bootstrap'
+import ErrorsForm from '../components/ErrorsForm/ErrorsForm'
 import './gameCreate.css'
 
 const CreateGame = () => {
 
-    const router = useRouter();
-    const [name, setName] = useState('');
-    const [category, setCategory] = useState('');
-    const [description, setDescription] = useState('');
-    const [image, setImage] = useState();
-    const [errors, setErrors] = useState([]);
+    const router = useRouter()
+    const [name, setName] = useState('')
+    const [category, setCategory] = useState('')
+    const [description, setDescription] = useState('')
+    const [image, setImage] = useState()
+    const [errors, setErrors] = useState([])
 
 
     const handleFormSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault()
 
         try {
             const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/games/createGame`, {
@@ -31,18 +31,18 @@ const CreateGame = () => {
                     description,
                     image
                 }),
-            });
+            })
             if (response.ok) {
                 router.push('/')
-                const data = await response.json();
+                const data = await response.json()
             } else {
-                const errorData = await response.json();
+                const errorData = await response.json()
                 setErrors(errorData.errorMessages)
             }
         } catch (err) {
-            console.error(err);
+            console.error(err)
         }
-    };
+    }
 
 
 
@@ -59,14 +59,14 @@ const CreateGame = () => {
             })
 
             if (response.ok) {
-                const data = await response.json();
+                const data = await response.json()
                 setImage(data.cloudinary_url)
             } else {
-                const errorData = await response.json();
+                const errorData = await response.json()
                 setErrors(errorData.errorMessages)
             }
         } catch (err) {
-            console.error(err);
+            console.error(err)
         }
     }
 
@@ -118,7 +118,7 @@ const CreateGame = () => {
 
             {errors?.length > 0 && <ErrorsForm>{errors.map(elm => <p key={elm._id}>{elm}</p>)}</ErrorsForm>}
         </div >
-    );
-};
+    )
+}
 
-export default CreateGame;
+export default CreateGame

@@ -1,24 +1,24 @@
 'use client'
 
-import { useEffect, useState } from 'react';
-import { useParams, useRouter } from 'next/navigation';
-import { Button, Form } from 'react-bootstrap';
-import ErrorsForm from '../ErrorsForm/ErrorsForm';
-import Link from 'next/link';
+import { useEffect, useState } from 'react'
+import { useParams, useRouter } from 'next/navigation'
+import { Button, Form } from 'react-bootstrap'
+import ErrorsForm from '../ErrorsForm/ErrorsForm'
+import Link from 'next/link'
 import('./editForm.css')
 
 
 const EditForm
     = () => {
 
-        const params = useParams();
-        const router = useRouter();
+        const params = useParams()
+        const router = useRouter()
 
-        const [name, setName] = useState('');
-        const [category, setCategory] = useState('');
-        const [description, setDescription] = useState('');
-        const [image, setImage] = useState('');
-        const [errors, setErrors] = useState([]);
+        const [name, setName] = useState('')
+        const [category, setCategory] = useState('')
+        const [description, setDescription] = useState('')
+        const [image, setImage] = useState('')
+        const [errors, setErrors] = useState([])
 
         const game = params
 
@@ -27,15 +27,15 @@ const EditForm
         useEffect(() => {
             const fetchGames = async () => {
                 try {
-                    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/games/getOneGame/${game.id}`);
-                    const data = await response.json();
-                    setName(data.name);
-                    setCategory(data.category);
-                    setDescription(data.description);
-                    setImage(data.image);
+                    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/games/getOneGame/${game.id}`)
+                    const data = await response.json()
+                    setName(data.name)
+                    setCategory(data.category)
+                    setDescription(data.description)
+                    setImage(data.image)
 
                 } catch (error) {
-                    console.log(error);
+                    console.log(error)
                 }
             }
 
@@ -43,7 +43,7 @@ const EditForm
         }, [game.id])
 
         const handleFormSubmit = async (e) => {
-            e.preventDefault();
+            e.preventDefault()
 
             try {
                 const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/games/updateGame/${game.id}`, {
@@ -57,18 +57,18 @@ const EditForm
                         description,
                         image,
                     }),
-                });
+                })
                 if (response.ok) {
                     router.push('/')
-                    const data = await response.json();
+                    const data = await response.json()
                 } else {
-                    const errorData = await response.json();
+                    const errorData = await response.json()
                     setErrors(errorData.errorMessages)
                 }
             } catch (error) {
-                console.error(error);
+                console.error(error)
             }
-        };
+        }
 
         const handleInputChange = async (e) => {
             e.preventDefault()
@@ -83,14 +83,14 @@ const EditForm
                 })
 
                 if (response.ok) {
-                    const data = await response.json();
+                    const data = await response.json()
                     setImage(data.cloudinary_url)
                 } else {
-                    const errorData = await response.json();
+                    const errorData = await response.json()
                     setErrors(errorData.errorMessages)
                 }
             } catch (err) {
-                console.error(err);
+                console.error(err)
             }
         }
 

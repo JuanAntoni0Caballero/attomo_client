@@ -42,7 +42,7 @@ function Navigation() {
                                 )
                                 :
                                 (
-                                    <Link className='Nav-bar-link' href="/Login" >Accede </Link>
+                                    <Link className='Nav-bar-link' href="/Login" >Accede</Link>
                                 )
                         }
 
@@ -51,9 +51,9 @@ function Navigation() {
                             <Navbar.Brand className='Nav-bar-welcome'> Bienvenido!! {userData.username}</Navbar.Brand>
                         }
 
-                        {isAdmin && <Link className='Nav-bar-link' href="/gameCreate" >Creación de Juegos </Link>}
+                        {isAdmin && <Link className='Nav-bar-link' href="/gameCreate">Creación de Juegos</Link>}
                     </Nav>
-                    <Link className='Nav-bar-link' href="/Contact" >Contacto </Link>
+                    <Link className='Nav-bar-link' href="/Contact">Contacto</Link>
 
                 </Navbar.Collapse>
             </Container>

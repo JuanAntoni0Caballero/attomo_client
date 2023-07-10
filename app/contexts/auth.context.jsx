@@ -1,6 +1,6 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect } from 'react'
 
-export const AuthContext = createContext();
+export const AuthContext = createContext()
 
 export const AuthProvider = ({ children }) => {
 
@@ -8,12 +8,12 @@ export const AuthProvider = ({ children }) => {
     const [userData, setUserData] = useState('')
 
     useEffect(() => {
-        const storedToken = localStorage.getItem('authoToken');
+        const storedToken = localStorage.getItem('authoToken')
         if (storedToken) {
-            setToken(storedToken);
-            getUserData(storedToken);
+            setToken(storedToken)
+            getUserData(storedToken)
         }
-    }, []);
+    }, [])
 
     const getUserData = async (authoToken) => {
         try {
@@ -21,33 +21,33 @@ export const AuthProvider = ({ children }) => {
                 headers: {
                     Authorization: `Bearer ${authoToken}`
                 },
-            });
+            })
 
             if (response.ok) {
-                const userData = await response.json();
+                const userData = await response.json()
                 setUserData(userData)
             } else {
-                console.error('Error al obtener los datos del usuario');
+                console.error('Error al obtener los datos del usuario')
             }
         } catch (error) {
-            console.error(error);
+            console.error(error)
         }
-    };
+    }
 
     const login = (authoToken) => {
-        localStorage.setItem('authoToken', authoToken);
-        setToken(authoToken);
-    };
+        localStorage.setItem('authoToken', authoToken)
+        setToken(authoToken)
+    }
 
     const logout = () => {
-        localStorage.removeItem('authoToken');
-        setToken('');
-        setUserData('');
-    };
+        localStorage.removeItem('authoToken')
+        setToken('')
+        setUserData('')
+    }
 
     return (
         <AuthContext.Provider value={{ token, userData, setUserData, login, logout }}>
             {children}
         </AuthContext.Provider>
-    );
-};
+    )
+}

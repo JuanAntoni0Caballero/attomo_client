@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import { Button, Form } from 'react-bootstrap'
 import { useContext } from 'react'
 import { AuthContext } from '../contexts/auth.context'
-import ErrorsForm from '../components/ErrorsForm/ErrorsForm';
+import ErrorsForm from '../components/ErrorsForm/ErrorsForm'
 
 import './login.css'
 
@@ -16,7 +16,7 @@ const LoginForm = () => {
     const { login } = useContext(AuthContext)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [errors, setErrors] = useState([]);
+    const [errors, setErrors] = useState([])
 
 
 
@@ -41,9 +41,8 @@ const LoginForm = () => {
                 login(authoToken)
                 router.push('/')
             } else {
-                const errorData = await response.json();
+                const errorData = await response.json()
                 setErrors(errorData.errorMessages)
-                console.log('LOS ERRORES ==> ', errorData.errorMessages)
             }
         } catch (error) {
             console.error('ERROR ==> ', error)

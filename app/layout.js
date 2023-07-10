@@ -1,17 +1,17 @@
 'use client'
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
 import 'globals.css'
-import Navigation from './components/Navigation/Navigation';
-import { AuthProvider } from './contexts/auth.context';
+import Navigation from './components/Navigation/Navigation'
+import { AuthProvider } from './contexts/auth.context'
 
 
-import dynamic from 'next/dynamic';
+import dynamic from 'next/dynamic'
 
 const DynamicBootstrap = dynamic(
   () => require('bootstrap/dist/js/bootstrap.min.js'),
   { ssr: false }
-);
+)
 
 const RootLayout = ({ children }) => {
 

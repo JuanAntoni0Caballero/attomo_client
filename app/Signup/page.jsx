@@ -1,20 +1,20 @@
 'use client'
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { Button, Form } from 'react-bootstrap';
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { Button, Form } from 'react-bootstrap'
 import './signup.css'
 
 
 
 const SignupForm = () => {
-    const router = useRouter();
-    const [username, setUserName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const router = useRouter()
+    const [username, setUserName] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
 
     const handleFormSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault()
 
         try {
             const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/signup`, {
@@ -27,14 +27,14 @@ const SignupForm = () => {
                     email,
                     password,
                 }),
-            });
+            })
             router.push('/Login')
-            const data = await response.json();
-            console.log(data);
+            const data = await response.json()
+            console.log(data)
         } catch (error) {
-            console.error(error);
+            console.error(error)
         }
-    };
+    }
 
     return (
 
@@ -79,7 +79,7 @@ const SignupForm = () => {
                 </Button>
             </Form>
         </div>
-    );
-};
+    )
+}
 
-export default SignupForm;
+export default SignupForm
