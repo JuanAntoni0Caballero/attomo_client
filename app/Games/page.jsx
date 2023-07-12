@@ -1,13 +1,11 @@
 'use client'
 
-
 import { useContext } from 'react'
 import { AuthContext } from '@/app/contexts/auth.context'
 import { useState, useEffect } from 'react'
 import { Card, Button, Form } from 'react-bootstrap'
 import Link from 'next/link'
 import './games.css'
-
 
 export default function GamesPage() {
 
@@ -76,8 +74,6 @@ export default function GamesPage() {
         }
     }
 
-
-
     return (
 
         <section>
@@ -97,7 +93,6 @@ export default function GamesPage() {
                 </Form>
 
             </div>
-
 
             <div className="games-container">
 
