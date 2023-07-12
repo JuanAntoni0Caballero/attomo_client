@@ -15,7 +15,6 @@ const CreateGame = () => {
     const [image, setImage] = useState()
     const [errors, setErrors] = useState([])
 
-
     const handleFormSubmit = async (e) => {
         e.preventDefault()
 
@@ -69,7 +68,6 @@ const CreateGame = () => {
             console.error(err)
         }
     }
-
 
     return (
         <div className='container-Create-Form'>
