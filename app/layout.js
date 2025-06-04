@@ -1,33 +1,33 @@
 'use client'
 
-import 'bootstrap/dist/css/bootstrap.min.css'
-import 'globals.css'
+import { Suspense } from 'react'
+import dynamic from 'next/dynamic'
 import Navigation from './components/Navigation/Navigation'
+import Loading from './loading'
 import { AuthProvider } from './contexts/auth.context'
 
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'globals.css'
 
-import dynamic from 'next/dynamic'
+const DynamicChildren = dynamic(() => Promise.resolve(({ children }) => <>{children}</>), {
+  ssr: false,
+  loading: () => <Loading />
+})
 
-const DynamicBootstrap = dynamic(
-  () => require('bootstrap/dist/js/bootstrap.min.js'),
-  { ssr: false }
-)
-
-const RootLayout = ({ children }) => {
-
+export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <AuthProvider>
-        <body >
+        <body>
           <header>
             <title>Game Score Hub</title>
           </header>
           <Navigation />
-          {children}
+          <Suspense fallback={<Loading />}>
+            <DynamicChildren>{children}</DynamicChildren>
+          </Suspense>
         </body>
       </AuthProvider>
-    </html >
-  )
+    </html>
+  );
 }
-
-export default RootLayout
